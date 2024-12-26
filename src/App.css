@@ -72,6 +72,15 @@
   background-color: #e0e0e0;
 }
 
+.sidebar-item.active {
+  background-color: #2563eb;
+  color: white;
+}
+
+.sidebar-item.active:hover {
+  background-color: #1d4ed8;
+}
+
 .main-content {
   flex: 1;
   padding: 2rem;
@@ -90,4 +99,12 @@
     transform: translateX(-100%);
     width: 250px;
   }
+}
+
+.sidebar-link {
+  @apply block px-4 py-2 text-gray-600 hover:bg-gray-100;
+}
+
+.sidebar-link.active {
+  @apply bg-blue-500 text-white hover:bg-blue-600;
 }

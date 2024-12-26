@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { 
   RiDashboardLine, 
   RiUser3Line, 
@@ -13,7 +13,6 @@ import {
 } from 'react-icons/ri';
 
 const Sidebar = () => {
-  const navigate = useNavigate();
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
@@ -32,13 +31,6 @@ const Sidebar = () => {
     }
   }, [isMobile]);
 
-  const handleNavigation = (path: string) => {
-    navigate(path);
-    if (isMobile) {
-      setIsCollapsed(true);
-    }
-  };
-
   return (
     <aside className={`sidebar ${isCollapsed ? 'collapsed' : ''}`}>
       <button 
@@ -49,34 +41,34 @@ const Sidebar = () => {
         {isCollapsed ? <RiMenuUnfoldLine /> : <RiMenuFoldLine />}
       </button>
       <ul className="sidebar-nav">
-        <li className="sidebar-item" onClick={() => handleNavigation('/')}>
+        <NavLink to="/" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiDashboardLine />
           {!isCollapsed && <span>Dashboard</span>}
-        </li>
-        <li className="sidebar-item" onClick={() => handleNavigation('/usermanagement')}>
+        </NavLink>
+        <NavLink to="/usermanagement" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiUser3Line />
           {!isCollapsed && <span>User Management</span>}
-        </li>
-        <li className="sidebar-item" onClick={() => handleNavigation('/categories')}>
+        </NavLink>
+        <NavLink to="/categories" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiListCheck />
           {!isCollapsed && <span>Categories</span>}
-        </li>
-        <li className="sidebar-item" onClick={() => handleNavigation('/products')}>
+        </NavLink>
+        <NavLink to="/products" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiStore2Line />
           {!isCollapsed && <span>Products</span>}
-        </li>
-        <li className="sidebar-item" onClick={() => handleNavigation('/settings')}>
+        </NavLink>
+        <NavLink to="/settings" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiSettings3Line />
           {!isCollapsed && <span>Settings</span>}
-        </li>
-        <li className="sidebar-item" onClick={() => handleNavigation('/messages')}>
+        </NavLink>
+        <NavLink to="/messages" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiMessage2Line />
           {!isCollapsed && <span>Messages</span>}
-        </li>
-        <li className="sidebar-item" onClick={() => handleNavigation('/help')}>
+        </NavLink>
+        <NavLink to="/help" className={({ isActive }) => `sidebar-item ${isActive ? 'active' : ''}`}>
           <RiQuestionLine />
           {!isCollapsed && <span>Help</span>}
-        </li>
+        </NavLink>
       </ul>
     </aside>
   );
